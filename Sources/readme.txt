@@ -10,3 +10,4 @@
 3) create telegram bot with Telegram's botfather (t.me/Quizzmasterbot)
 4) make Task for polling from telegram api, reply by echoing
 5) add Fluent + PostgreSQL
+6) Create quiz models/migrations (quiz, question, questionType, answer)
