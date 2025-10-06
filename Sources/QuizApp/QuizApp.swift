@@ -7,7 +7,8 @@ struct QuizApp {
     static func main() async throws {
         print("Hello, world!")
         let app = try await Application.make()
-        
+        try configure(app)
+
         let botToken = Environment.get("TELEGRAM_BOT_TOKEN") ?? ""
         let telegramAPI = "https://api.telegram.org/bot\(botToken)"
         var lastUpdateId: Int? = nil
