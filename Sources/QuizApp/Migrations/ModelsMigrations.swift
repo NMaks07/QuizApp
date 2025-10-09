@@ -74,3 +74,34 @@ struct CreateAnswer: AsyncMigration {
         try await database.schema("answers").delete()
     }
 }
+
+struct CreateAttendee: AsyncMigration {
+    func prepare(on database: Database) async throws {
+        try await database.schema(Attendee.schema)
+            .id()
+            .field("name", .string, .required)
+            .field("phone_number", .string, .required)
+            .unique(on: "phone_number")
+            .create()
+    }
+
+    func revert(on database: Database) async throws {
+        try await database.schema(Attendee.schema).delete()
+    }
+}
+
+struct CreateQuizResult: AsyncMigration {
+    func prepare(on database: Database) async throws {
+        try await database.schema("quiz_results")
+            .id()
+            .field("attendee_id", .uuid, .required, .references("attendees", "id"))
+            .field("quiz_id", .uuid, .required, .references("quizzes", "id"))
+            .field("question_id", .uuid, .required, .references("questions", "id"))
+            .field("answer_id", .uuid, .required, .references("answers", "id"))
+            .create()
+    }
+
+    func revert(on database: Database) async throws {
+        try await database.schema("quiz_results").delete()
+    }
+}

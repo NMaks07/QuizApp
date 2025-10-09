@@ -10,7 +10,7 @@
 3) create telegram bot with Telegram's botfather (t.me/Quizzmasterbot)
 4) make Task for polling from telegram api, reply by echoing
 5) add Fluent + PostgreSQL
-6) Create quiz models/migrations (quiz, question, questionType, answer)
+6) Create quiz models/migrations (quiz, question, questionType, answer, atendee, quizResult)
 7) install docker:
     docker run --name quiz-postgres \
     -e POSTGRES_USER=postgres \

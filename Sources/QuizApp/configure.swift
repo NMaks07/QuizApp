@@ -28,6 +28,8 @@ public func configure(_ app: Application) throws {
     app.migrations.add(CreateQuestionType())
     app.migrations.add(CreateQuestion())
     app.migrations.add(CreateAnswer())
+    app.migrations.add(CreateAttendee())
+    app.migrations.add(CreateQuizResult())
 
     // Auto-migrate on startup
     try app.autoMigrate().wait()
