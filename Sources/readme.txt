@@ -6,7 +6,7 @@
 //
 
 1) install Vapor
-2) run Vapor Hello world app
+2) create and run Vapor Hello world app
 3) create telegram bot with Telegram's botfather (t.me/Quizzmasterbot)
 4) make Task for polling from telegram api, reply by echoing
 5) add Fluent + PostgreSQL
@@ -20,3 +20,5 @@
     -d postgres:15
 8) run migrations in bash:
     swift run QuizApp migrate
+9) Make tiny web app to fulfill quiz data(quiz, questions, answers)
+    - add Leaf to project (https://github.com/vapor/leaf.git dependency)
