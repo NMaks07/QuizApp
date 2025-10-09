@@ -27,20 +27,6 @@ struct CreateQuiz: AsyncMigration {
     }
 }
 
-struct CreateQuestionType: AsyncMigration {
-    func prepare(on database: Database) async throws {
-        try await database.schema("question_types")
-            .id()
-            .field("title", .string, .required)
-            .field("description", .string)
-            .create()
-    }
-
-    func revert(on database: Database) async throws {
-        try await database.schema("question_types").delete()
-    }
-}
-
 struct CreateQuestion: AsyncMigration {
     func prepare(on database: Database) async throws {
         try await database.schema("questions")
@@ -49,7 +35,7 @@ struct CreateQuestion: AsyncMigration {
             .field("order", .int, .required)
             .field("points", .int)
             .field("quiz_id", .uuid, .required, .references("quizzes", "id", onDelete: .cascade))
-            .field("type_id", .uuid, .required, .references("question_types", "id", onDelete: .restrict))
+            .field("type", .string, .required)
             .create()
     }
 

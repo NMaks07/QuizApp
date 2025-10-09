@@ -5,7 +5,6 @@ import Vapor
 @main
 struct QuizApp {
     static func main() async throws {
-        print("Hello, world!")
         let app = try await Application.make()
         try configure(app)
 
@@ -47,11 +46,7 @@ struct QuizApp {
                 try? await Task.sleep(nanoseconds: 2_000_000_000)
             }
         }
-        
-        app.get("hello") { (request) async -> String in
-            "Hello, Vapor!"
-        }
-        
+                
         try await app.execute()
     }
 }

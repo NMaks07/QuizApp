@@ -8,6 +8,7 @@
 import Vapor
 import Fluent
 import FluentPostgresDriver
+import Leaf
 
 public func configure(_ app: Application) throws {
     // Database setup with PostgresConfiguration
@@ -25,12 +26,15 @@ public func configure(_ app: Application) throws {
 
     // Register migrations
     app.migrations.add(CreateQuiz())
-    app.migrations.add(CreateQuestionType())
     app.migrations.add(CreateQuestion())
     app.migrations.add(CreateAnswer())
     app.migrations.add(CreateAttendee())
     app.migrations.add(CreateQuizResult())
 
+    app.views.use(.leaf)
     // Auto-migrate on startup
     try app.autoMigrate().wait()
+    
+    try routes(app)
 }
+

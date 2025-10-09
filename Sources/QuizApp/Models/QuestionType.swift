@@ -8,27 +8,11 @@
 import Fluent
 import Vapor
 
-final class QuestionType: Model, Content {
-    static let schema = "question_types"
-    
-    @ID(key: .id)
-    var id: UUID?
-    
-    @Field(key: "title")
-    var title: String
-    
-    @OptionalField(key: "description")
-    var description: String?
-    
-    @Children(for: \.$type)
-    var questions: [Question]
-    
-    init() {}
-    
-    init(id: UUID? = nil, title: String, description: String? = nil) {
-        self.title = title
-        self.description = description
-    }
+// Represents the type of a question: single or multiple correct answers
+enum QuestionType: String, Codable, CaseIterable, Sendable {
+    case singleCorrect = "single_correct"
+    // For questions with multiple correct answers where selecting any one correct answer suffices
+    case multipleAny = "multiple_any"
+    // For questions with multiple correct answers where all correct answers must be selected
+    case multipleAll = "multiple_all"
 }
-
-extension QuestionType: @unchecked Sendable {}

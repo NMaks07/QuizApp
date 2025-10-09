@@ -22,3 +22,4 @@
     swift run QuizApp migrate
 9) Make tiny web app to fulfill quiz data(quiz, questions, answers)
     - add Leaf to project (https://github.com/vapor/leaf.git dependency)
+    - remove question type table, make question type as an enum

@@ -26,21 +26,22 @@ final class Question: Model, Content {
     @Parent(key: "quiz_id")
     var quiz: Quiz
     
-    @Parent(key: "type_id")
-    var type: QuestionType
+    @Enum(key: "type_kind")
+    var typeKind: QuestionType
     
     @Children(for: \.$question)
     var answers: [Answer]
     
     init() {}
     
-    init(id: UUID? = nil, text: String, order: Int, points: Int? = nil, quizId: UUID, typeId: UUID) {
+    init(id: UUID? = nil, text: String, order: Int, points: Int? = nil, quizId: UUID, typeKind: QuestionType) {
         self.text = text
         self.order = order
         self.points = points
         self.$quiz.id = quizId
-        self.$type.id = typeId
+        self.typeKind = typeKind
     }
 }
 
 extension Question: @unchecked Sendable {}
+
